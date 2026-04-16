@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Produto | EcoLink</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Sora',sans-serif;
+}
+
+body{
+  background:#f9fafb;
+  color:#111;
+}
+
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  border-bottom:1px solid #eee;
+}
+
+nav h1{
+  font-size:20px;
+  color: #22c55e;
+}
+
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  color:#444;
+  font-size:14px;
+}
+.logo-nav{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-nav h1{
+  font-size:20px;
+  color:#22c55e;
+}
+.logo-nav svg{
+  transition:0.3s;
+}
+
+.logo-nav:hover svg{
+  transform:rotate(8deg) scale(1.1);
+}
+nav a:hover{
+  color:#000;
+}
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* deixa os ícones mais bonitos */
+.nav-right a{
+  font-size:18px;
+  color:#444;
+  transition:0.3s;
+}
+
+.nav-right a:hover{
+  color:#22c55e;
+}
+
+/* melhora a search */
+.search-box{
+  position:relative;
+}
+
+.pesquisa{
+  padding:8px 12px 8px 35px;
+  border:1px solid #ddd;
+  border-radius:20px;
+  width:180px;
+  transition:0.3s;
+}
+
+.pesquisa:focus{
+  border-color:#22c55e;
+  width:220px;
+}
+
+/* ícone lupa */
+.search-box i{
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#888;
+}
+
+/* CONTAINER */
+.container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  padding:80px 100px;
+}
+
+/* IMAGEM */
+.produto-img{
+  background:#fff;
+  border-radius:16px;
+  padding:30px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.produto-img img{
+  width:100%;
+  border-radius:10px;
+}
+
+/* INFO */
+.produto-info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.categoria{
+  font-size:12px;
+  color:#22c55e;
+  margin-bottom:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.produto-info h1{
+  font-size:32px;
+  margin-bottom:15px;
+}
+
+.produto-info p{
+  color:#666;
+  line-height:1.6;
+  margin-bottom:25px;
+}
+
+.preco{
+  font-size:28px;
+  font-weight:600;
+  margin-bottom:25px;
+}
+
+/* BOTÕES */
+.buttons{
+  display:flex;
+  gap:15px;
+}
+
+.btn{
+  padding:14px 22px;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+/* botão principal */
+.btn-comprar{
+  background:#22c55e;
+  color:#fff;
+  flex:1;
+}
+
+.btn-comprar:hover{
+  background:#16a34a;
+  transform:translateY(-2px);
+}
+
+/* botão secundário */
+.btn-cart{
+  background:#111;
+  color:#fff;
+}
+
+.btn-cart:hover{
+  background:#000;
+}
+
+/* EXTRA INFO */
+.extra{
+  margin-top:30px;
+  font-size:14px;
+  color:#555;
+}
+
+.extra i{
+  color:#22c55e;
+  margin-right:6px;
+}
+
+/* RESPONSIVO */
+@media(max-width:900px){
+  .container{
+    grid-template-columns:1fr;
+    padding:40px 20px;
+  }
+}
+/* ⭐ estrelas */
+.avaliacao{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  margin-bottom:10px;
+}
+
+.avaliacao i{
+  color:#facc15;
+}
+
+.avaliacao span{
+  margin-left:8px;
+  color:#555;
+  font-size:14px;
+}
+
+/* 📦 info extra */
+.info-extra{
+  margin-bottom:20px;
+  font-size:14px;
+  color:#444;
+}
+
+.info-extra p{
+  margin-bottom:5px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-nav">
+
+      <svg viewBox="0 0 100 100" width="32" height="32">
+        <circle 
+          cx="50" cy="50" r="44"
+          fill="none"
+          stroke="#22c55e"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-dasharray="260 40"
+          transform="rotate(-90 50 50)"
+        />
+    
+        <path 
+          d="M50 65 C40 55, 38 45, 50 30 C62 45, 60 55, 50 65 Z"
+          fill="#22c55e"
+        />
+    
+        <path 
+          d="M50 62 C46 54, 48 44, 50 34"
+          stroke="#050d08"
+          stroke-width="2"
+          fill="none"
+          stroke-linecap="round"
+        />
+      </svg>
+    
+      <h1>EcoLink</h1>
+    
+    </div>
+<div>
+  <div class="nav-right">
+
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" class="pesquisa" placeholder="Buscar..." maxlength="100">
+      </div>
+    
+      <a href="#"><i class="fa-solid fa-user"></i></a>
+      <a href="carrinho.html"><i class="fa-solid fa-cart-shopping"></i></a>
+    
+    </div>
+</nav>
+
+<!-- PRODUTO -->
+<div class="container">
+
+  <!-- IMAGEM -->
+  <div class="produto-img">
+    <img id="imagem" src="">
+  </div>
+
+  <!-- INFO -->
+  <div class="produto-info">
+  
+    <div class="categoria">Sustentável</div>
+  
+    <h1 id="nome">Produto</h1>
+  
+    <!-- ⭐ AVALIAÇÃO -->
+    <div class="avaliacao">
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <span>(4.0)</span>
+    </div>
+  
+    <p id="descricao">
+      Solução sustentável para ambientes urbanos. Design moderno, fácil uso e impacto ambiental positivo.
+    </p>
+  
+    <div class="preco">R$ <span id="preco">149.90</span></div>
+  
+    <!-- 📦 MAIS INFO -->
+    <div class="info-extra">
+      <p><strong>Material:</strong> Reciclável</p>
+      <p><strong>Uso:</strong> Interno e externo</p>
+      <p><strong>Durabilidade:</strong> +5 anos</p>
+    </div>
+  
+    <div class="buttons">
+      <button class="btn btn-comprar" onclick="comprarAgora()">Comprar Agora</button>
+    </div>
+  
+    <div class="extra">
+      <p><i class="fa-solid fa-truck"></i> Frete grátis</p>
+      <p><i class="fa-solid fa-shield"></i> Garantia de 12 meses</p>
+    </div>
+  
+  </div>
+
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    
+    const nome = params.get("nome");
+    const preco = params.get("preco");
+    const img = params.get("img");
+    
+    document.getElementById("nome").innerText = nome;
+    const precoFormatado = preco 
+  ? parseFloat(preco).toFixed(2).replace(".", ",") 
+  : "0,00";
+
+document.getElementById("preco").innerText = precoFormatado;
+    document.getElementById("imagem").src = img;
+    
+    document.getElementById("nome").innerText = nome || "Produto";
+document.getElementById("imagem").src = img || "https://via.placeholder.com/400";
+
+function irProduto(nome, preco, img){
+  window.location.href =
+    "comprar-produto.html?nome=" + encodeURIComponent(nome) +
+    "&preco=" + preco +
+    "&img=" + encodeURIComponent(img);
+}
+
+function addCarrinho(){
+  let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+  carrinho.push({
+    nome: nome,
+    preco: parseFloat(preco),
+    imagem: img
+  });
+
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+}
+    
+    /* 💳 comprar direto */
+    function comprarAgora(){
+      addCarrinho();
+      window.location.href = "carrinho.html";
+    }
+    </script>
+
+</body>
+</html>

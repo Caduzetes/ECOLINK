@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Carrinho | EcoLink</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Sora',sans-serif;
+}
+
+body{
+  background:#f9fafb;
+  color:#111;
+}
+
+/* NAV */
+nav{
+  padding:20px 60px;
+  background:#fff;
+  border-bottom:1px solid #eee;
+  font-weight:600;
+  color:#22c55e;
+}
+
+/* CONTAINER */
+.container{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:40px;
+  padding:60px;
+}
+
+/* LISTA */
+.lista{
+  background:#fff;
+  border-radius:16px;
+  padding:30px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+  padding-bottom:20px;
+  border-bottom:1px solid #eee;
+}
+
+/* PRODUTO */
+.produto{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.produto img{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.produto-info{
+  font-size:14px;
+}
+
+.produto-info strong{
+  display:block;
+}
+
+/* BOTÃO REMOVER */
+.remover{
+  background:none;
+  border:none;
+  color:#ef4444;
+  cursor:pointer;
+}
+
+/* RESUMO */
+.resumo{
+  background:#fff;
+  border-radius:16px;
+  padding:30px;
+  height:fit-content;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.resumo h3{
+  margin-bottom:20px;
+}
+
+.linha{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.total{
+  font-size:20px;
+  font-weight:600;
+  margin-top:10px;
+}
+
+/* BOTÃO FINALIZAR */
+.btn{
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#22c55e;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#16a34a;
+  transform:translateY(-2px);
+}
+
+/* RESPONSIVO */
+@media(max-width:900px){
+  .container{
+    grid-template-columns:1fr;
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>🛒 EcoLink - Carrinho</nav>
+
+<div class="container">
+
+  <!-- LISTA DE PRODUTOS -->
+  <div class="lista" id="lista"></div>
+
+  <!-- RESUMO -->
+  <div class="resumo">
+    <h3>Resumo</h3>
+
+    <div class="linha">
+      <span>Subtotal</span>
+      <span id="subtotal">R$ 0</span>
+    </div>
+
+    <div class="linha">
+      <span>Frete</span>
+      <span>Grátis</span>
+    </div>
+
+    <div class="linha total">
+      <span>Total</span>
+      <span id="total">R$ 0</span>
+    </div>
+
+    <button class="btn" onclick="finalizar()">Finalizar Compra</button>
+  </div>
+
+</div>
+
+<script>
+let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+let total = 0;
+
+function carregarCarrinho(){
+  const lista = document.getElementById("lista");
+
+  lista.innerHTML = "";
+
+  carrinho.forEach((item, index) => {
+
+    let div = document.createElement("div");
+    div.classList.add("item");
+
+    div.innerHTML = `
+      <div class="produto">
+        <img src="${item.imagem}">
+        <div class="produto-info">
+          <strong>${item.nome}</strong>
+          R$ ${item.preco.toFixed(2).replace(".", ",")}
+        </div>
+      </div>
+
+      <button class="remover" onclick="remover(${index})">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    `;
+
+    lista.appendChild(div);
+
+    total += item.preco;
+  });
+
+  document.getElementById("subtotal").innerText =
+    "R$ " + total.toFixed(2).replace(".", ",");
+
+  document.getElementById("total").innerText =
+    "R$ " + total.toFixed(2).replace(".", ",");
+}
+
+function remover(index){
+  carrinho.splice(index, 1);
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  total = 0;
+  carregarCarrinho();
+}
+
+function finalizar(){
+  alert("Compra finalizada! Total: R$ " + total.toFixed(2).replace(".", ","));
+  localStorage.removeItem("carrinho");
+  location.reload();
+}
+
+// carregar ao abrir
+carregarCarrinho();
+
+</script>
+
+</body>
+</html>
